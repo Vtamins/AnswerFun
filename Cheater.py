@@ -1,20 +1,16 @@
 # -*- coding:utf-8 -*-
+import subprocess
+import urllib
 
 from PIL import ImageGrab
 from aip import AipOcr
-import subprocess
-import urllib
+
 
 """ 你的 百度文字识别 APPID AK SK """
 APP_ID = '10685137'
 API_KEY = 'P0djNf97VhhhCGPmDBgDffyO'
 SECRET_KEY = 'boz0UYdkDCYeiGxVDxTG60GgtDSiYhNa'
 client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
-
-""" 读取图片 """
-def get_file_content(filePath):
-    with open(filePath, 'rb') as fp:
-        return fp.read()
 
 # 截屏
 bbox =(52,337,640,481)  # 设置 x0 y0 x1 y1
@@ -34,3 +30,8 @@ else:
      problem = problems[1]
 print problem.encode('utf8')
 subprocess.call(["open","https://www.baidu.com/s?wd="+urllib.quote(problem.encode('utf-8')) ])
+
+""" 读取图片 """
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
