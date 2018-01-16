@@ -16,6 +16,11 @@ client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 bbox =(52,337,640,481)  # 设置 x0 y0 x1 y1
 im = ImageGrab.grab(bbox)
 im.save("./test.png",'png') # 设置的图片路径
+
+""" 读取图片 """
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
 image = get_file_content('./test.png')
 result = client.basicGeneral(image)
 problem = u''
@@ -31,7 +36,4 @@ else:
 print problem.encode('utf8')
 subprocess.call(["open","https://www.baidu.com/s?wd="+urllib.quote(problem.encode('utf-8')) ])
 
-""" 读取图片 """
-def get_file_content(filePath):
-    with open(filePath, 'rb') as fp:
-        return fp.read()
+
